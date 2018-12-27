@@ -10,6 +10,7 @@ from werkzeug.wsgi import DispatcherMiddleware
 from aliyun_exporter import CollectorConfig
 from aliyun_exporter.QueryMetricMetaRequest import QueryMetricMetaRequest
 from aliyun_exporter.QueryProjectMetaRequest import QueryProjectMetaRequest
+from aliyun_exporter.utils import format_metric, format_period
 
 
 def create_app(config: CollectorConfig):
@@ -56,12 +57,6 @@ def create_app(config: CollectorConfig):
             return render_template("error.html", errorMsg=e)
         data = json.loads(resp)
         return render_template("yaml.html", metrics=data["Resources"]["Resource"], project=name)
-
-    def format_metric(text: str):
-        return text.replace('.', '_')
-
-    def format_period(text: str):
-        return text.split(',', 1)[0]
 
     app.jinja_env.filters['formatmetric'] = format_metric
     app.jinja_env.filters['formatperiod'] = format_period
