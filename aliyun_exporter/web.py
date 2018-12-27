@@ -2,7 +2,7 @@ import json
 
 from aliyunsdkcore.client import AcsClient
 from flask import (
-    Flask , render_template
+    Flask, render_template
 )
 from prometheus_client import make_wsgi_app
 from werkzeug.wsgi import DispatcherMiddleware
