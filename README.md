@@ -1,7 +1,7 @@
 # Prometheus Exporter for Alibaba Cloud
 
 ![license](https://img.shields.io/hexpm/l/plug.svg)
-[![help wanted](https://img.shields.io/github/issues/aylei/aliyun-exporter/help_wanted.svg)](https://github.com/aylei/aliyun-exporter/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![help wanted](https://img.shields.io/github/issues/aylei/aliyun-exporter/help wanted.svg)](https://github.com/aylei/aliyun-exporter/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![pypi](https://img.shields.io/pypi/v/aliyun-exporter.svg)](https://pypi.org/project/aliyun-exporter/)
 [![docker](https://img.shields.io/docker/pulls/aylei/aliyun-exporter.svg)](https://cloud.docker.com/u/aylei/repository/docker/aylei/aliyun-exporter)
 [![Build Status](https://travis-ci.org/aylei/aliyun-exporter.svg?branch=master)](https://travis-ci.org/aylei/aliyun-exporter)
