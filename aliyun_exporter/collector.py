@@ -18,6 +18,7 @@ class CollectorConfig(object):
                  rate_limit=10,
                  credential=None,
                  metrics=None,
+                 info_metrics=None,
                  ):
         # if metrics is None:
         # raise Exception('Metrics config must be set.')
@@ -29,11 +30,12 @@ class CollectorConfig(object):
         self.metrics = metrics
         self.rate_limit = rate_limit
         self.pool_size = pool_size
-
+        self.info_metrics = info_metrics
 
 class AliyunCollector(object):
     def __init__(self, config: CollectorConfig):
         self.metrics = config.metrics
+        self.info_metrics = config.info_metrics
         self.client = AcsClient(
             ak=config.credential['access_key_id'],
             secret=config.credential['access_key_secret'],
@@ -63,7 +65,6 @@ class AliyunCollector(object):
 
     def parse_label_keys(self, point):
         return [k for k in point if k not in ['timestamp', 'Maximum', 'Minimum', 'Average']]
-
 
     def format_metric_name(self, project, name):
         return 'aliyun_{}_{}'.format(project, name)
@@ -97,6 +98,9 @@ class AliyunCollector(object):
             gauge.add_metric([point[k] for k in label_keys], point[measure])
         yield gauge
         yield metric_up_gauge(self.format_metric_name(project, name), True)
+
+    def query_info(self):
+        pass
 
     def collect(self):
         for project in self.metrics:

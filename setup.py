@@ -35,6 +35,7 @@ setup(
         'pyyaml',
         'ratelimiter',
         'flask',
+        'cachetools',
     ],
     entry_points={
         'console_scripts': [
