@@ -19,8 +19,8 @@ The result from alibaba cloud API will be cached for an hour.
 
 Different resources should implement its own 'xxx_info' function. 
 
-Different resource has different information structure, and most of 
-them are nested, for simplicity, we map the top-level attributes to the 
+Different resource has different information structure, and most of
+them are nested, for simplicity, we map the top-level attributes to the
 labels of metric, and handle nested attribute specially. If a nested
 attribute is not handled explicitly, it will be dropped.
 '''
@@ -40,9 +40,9 @@ class InfoProvider():
     def ecs_info(self) -> GaugeMetricFamily:
         req = DescribeECS.DescribeInstancesRequest()
         nested_handler = {
-            'InnerIpAddress': lambda obj: try_or_else(lambda : obj['IpAddress'][0], ''),
-            'PublicIpAddress': lambda obj: try_or_else(lambda : obj['IpAddress'][0], ''),
-            'VpcAttributes': lambda obj: try_or_else(lambda : obj['PrivateIpAddress']['IpAddress'][0], ''),
+            'InnerIpAddress': lambda obj : try_or_else(lambda : obj['IpAddress'][0], ''),
+            'PublicIpAddress': lambda obj : try_or_else(lambda : obj['IpAddress'][0], ''),
+            'VpcAttributes': lambda obj : try_or_else(lambda : obj['PrivateIpAddress']['IpAddress'][0], ''),
         }
         return self.info_template(req, 'aliyun_meta_ecs_info', nested_handler=nested_handler)
 
@@ -68,7 +68,7 @@ class InfoProvider():
         gauge = None
         label_keys = None
         for instance in self.pager_generator(req, page_size, page_num, to_list):
-            if gauge == None:
+            if gauge is None:
                 label_keys = self.label_keys(instance, nested_handler)
                 gauge = GaugeMetricFamily(name, desc, labels=label_keys)
             gauge.add_metric(labels=self.label_values(instance, label_keys, nested_handler), value=1.0)
@@ -88,15 +88,14 @@ class InfoProvider():
             page_num += 1
 
     def label_keys(self, instance, nested_handler=None):
-        if nested_handler == None:
+        if nested_handler is None:
             nested_handler = {}
         return [k for k, v in instance.items()
                 if k in nested_handler or isinstance(v, str) or isinstance(v, int)]
 
     def label_values(self, instance, label_keys, nested_handler=None):
-        if nested_handler == None:
+        if nested_handler is None:
             nested_handler = {}
         return map(lambda k: str(nested_handler[k](instance[k])) if k in nested_handler else str(instance[k]),
                    label_keys)
-
 
