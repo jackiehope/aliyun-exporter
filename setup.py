@@ -36,6 +36,9 @@ setup(
         'ratelimiter',
         'flask',
         'cachetools',
+        'aliyun-python-sdk-ecs',
+        'aliyun-python-sdk-rds',
+        'aliyun-python-sdk-r-kvstore',
     ],
     entry_points={
         'console_scripts': [
