@@ -1,0 +1,23 @@
+credential:
+  access_key_id: LTAIAxL9hJ2fwoDO
+  access_key_secret: T3SpuBZ84PVBuIyzgMkCeKpR4H083V
+  region_id: cn-hangzhou
+
+metrics:
+  rds_performance:
+  - name: MySQL_QPSTPS
+  - name: MySQL_NetworkTraffic
+  - name: MySQL_Sessions
+  - name: MySQL_InnoDBBufferRatio
+  - name: MySQL_InnoDBDataReadWriten
+  - name: MySQL_InnoDBLogRequests
+  - name: MySQL_InnoDBLogWrites
+  - name: MySQL_TempDiskTableCreates
+  - name: MySQL_MyISAMKeyBufferRatio
+  - name: MySQL_MyISAMKeyReadWrites
+  - name: MySQL_COMDML
+  - name: MySQL_RowDML
+  - name: MySQL_MemCpuUsage
+  - name: MySQL_IOPS
+  - name: MySQL_DetailedSpaceUsage
+  - name: MySQL_CPS
