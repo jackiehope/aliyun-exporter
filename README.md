@@ -128,7 +128,7 @@ Notes:
 * `host:port/projects/{project}` will host the metrics meta of a certain project
 * `host:port/yaml/{project}` will host a config YAML of the project's metrics
 
-you can easily navigate in this pages by hyperlink.
+you can easily navigate in these pages by hyperlink.
 
 ## Telemetry
 
